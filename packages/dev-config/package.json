@@ -1,7 +1,6 @@
 {
   "name": "@heybray/dev-config",
   "version": "0.0.1",
-  "private": true,
   "type": "module",
   "license": "AGPL-3.0-only",
   "files": [

@@ -1,4 +1,4 @@
-import { globSync } from "node:fs";
+import { globSync } from "glob";
 import { defineConfig } from "tsup";
 
 function entriesFor(dir: string, ext: string) {
