@@ -30,6 +30,7 @@ export default defineConfig({
     "react",
     "react-dom",
     "@heybray/identity",
+    "@heybray/taxonomy",
     "@heybray/ui",
     "@dnd-kit/core",
     "@dnd-kit/sortable",
