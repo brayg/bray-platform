@@ -6,7 +6,8 @@
   "license": "AGPL-3.0-only",
   "packageManager": "npm@10.9.2",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "engines": {
     "node": ">=20.0.0",

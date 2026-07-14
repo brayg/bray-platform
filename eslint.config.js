@@ -6,7 +6,7 @@ export default [
     ignores: ["**/dist/**", "**/node_modules/**", "examples/**"],
   },
   {
-    files: ["packages/*/src/**/*.{ts,tsx}"],
+    files: ["packages/*/src/**/*.{ts,tsx}", "examples/*/{server,src}/**/*.{ts,tsx}"],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -14,5 +14,5 @@ export default [
       },
     },
   },
-  ...licenseHeaderConfig(["packages/*/src/**/*.{ts,tsx}"]),
+  ...licenseHeaderConfig(["packages/*/src/**/*.{ts,tsx}", "examples/*/{server,src}/**/*.{ts,tsx}"]),
 ];
