@@ -4,18 +4,25 @@
  */
 
 import { readFileSync } from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 
 let cachedVersion: string | null = null;
 
-export function getAppVersion(): string {
+/**
+ * Reads the version field from the consuming app's own package.json.
+ *
+ * Takes an explicit path rather than guessing one by walking a fixed number
+ * of directory levels from this module's own location: that assumption only
+ * held while this package was consumed as raw source at a known depth inside
+ * a monorepo. Once installed from npm, this module's location on disk (e.g.
+ * node_modules/@heybray/server-kit/dist/) bears no fixed relationship to the
+ * app's own root, so the caller must say where its package.json lives —
+ * typically `path.resolve(import.meta.dirname, "../package.json")` from a
+ * module at the app's own root.
+ */
+export function getAppVersion(appPackageJsonPath: string): string {
   if (cachedVersion) return cachedVersion;
 
-  // This package is consumed as raw source from <repo-root>/packages/server-kit/src
-  // (no build step in Phase 1), so the app's root package.json is three levels up.
-  const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
-  const pkg = JSON.parse(readFileSync(path.join(rootDir, "package.json"), "utf-8")) as {
+  const pkg = JSON.parse(readFileSync(appPackageJsonPath, "utf-8")) as {
     version: string;
   };
   cachedVersion = pkg.version;
