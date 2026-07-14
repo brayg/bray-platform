@@ -19,7 +19,7 @@ import { NotesPage } from "./pages/NotesPage.tsx";
 const appConfig = {
   displayName: "Basic App",
   tagline: "bray-platform composition example",
-  urls: { repo: "https://github.com/brayg/bray-platform" },
+  urls: { repo: "https://github.com/heybray-labs/bray-platform" },
   routes: {
     contentPath: (contentType: string, contentId: number) => `/notes/${contentId}`,
   },
