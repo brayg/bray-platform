@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { randomUUID } from "crypto";
 import { desc, eq, inArray } from "drizzle-orm";
 import { db, createLogger } from "@heybray/server-kit";

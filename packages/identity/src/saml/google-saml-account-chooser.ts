@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { getSamlProviderName } from "../auth-config.ts";
 
 function isGoogleSamlProvider(): boolean {

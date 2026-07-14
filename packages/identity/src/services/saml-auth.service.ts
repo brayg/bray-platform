@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { SAML, ValidateInResponseTo, type Profile } from "@node-saml/node-saml";
 import {
   assertSamlConfigured,

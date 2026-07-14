@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { useEffect, useState } from "react";
 
 export const REVEAL_EASING = (t: number) => 1 - Math.pow(1 - t, 3);

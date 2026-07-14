@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 /**
  * Normalize a SAML ACS POST body after express.urlencoded parsing.
  * Form parsers decode '+' as space, which corrupts base64 SAMLResponse values

@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { Avatar, AvatarFallback } from "@heybray/ui/components/avatar";
 import { Input } from "@heybray/ui/components/input";
 import { CategoryMasteryBar } from "../points/CategoryMasteryBar.tsx";

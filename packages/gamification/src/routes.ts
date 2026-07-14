@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { Router, Response, type RequestHandler } from "express";
 import { authenticateToken, requirePasswordChanged, type AuthRequest } from "@heybray/identity";
 import { createLogger } from "@heybray/server-kit";

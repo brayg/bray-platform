@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { ChevronDown } from "lucide-react";
 import { ClassificationOptionLabel } from "./ClassificationOptionLabel.tsx";
 import { Button } from "@heybray/ui/components/button";

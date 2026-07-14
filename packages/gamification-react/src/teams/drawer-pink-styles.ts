@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 /** Explicit Bray pink tints — Tailwind `/opacity` does not apply to `var(--primary)` colors. */
 export const drawerPink = {
   header: "bg-[var(--bray-pink-light)]",

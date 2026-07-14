@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { db } from "@heybray/server-kit";
 import { and, asc, count, eq, inArray, max, sql } from "drizzle-orm";
 import { users, teams } from "@heybray/identity/schema";

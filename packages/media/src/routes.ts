@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { Router, type Request, type RequestHandler, Response } from "express";
 import multer from "multer";
 import {

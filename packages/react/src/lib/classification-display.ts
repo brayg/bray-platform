@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Tag } from "lucide-react";

@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { Flame, Star, TrendingUp } from "lucide-react";
 import { resolveRewardTierDisplay } from "@heybray/gamification/schema";
 import type { StarMapData } from "./star-map-types";

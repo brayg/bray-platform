@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Avatar, AvatarFallback } from "@heybray/ui/components/avatar";

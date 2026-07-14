@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { Router, type NextFunction, type Request, type RequestHandler, type Response } from "express";
 import { getTenantContext } from "./request-context.ts";
 

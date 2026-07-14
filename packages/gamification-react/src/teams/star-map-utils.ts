@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import type { SortColumn, SortDirection, StarMapMember } from "./star-map-types";
 
 export function formatRelativeDate(iso: string | null): string {

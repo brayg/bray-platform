@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import type { Request, Response, NextFunction } from "express";
 import { createLogger, generateRequestId } from "../logger.ts";
 

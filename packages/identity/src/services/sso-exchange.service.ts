@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { nanoid } from "nanoid";
 import { and, eq, isNull, lt } from "drizzle-orm";
 import { authExchangeCodes } from "../schema/auth-exchange-codes.ts";

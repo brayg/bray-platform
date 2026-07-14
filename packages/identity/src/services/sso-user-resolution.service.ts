@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { and, eq } from "drizzle-orm";
 import { roles } from "../schema/roles.ts";
 import { userIdentities } from "../schema/user-identities.ts";

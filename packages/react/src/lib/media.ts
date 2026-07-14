@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 export const MEDIA_MAX_BYTES = 500 * 1024;
 export const MEDIA_ALLOWED_MIME = new Set([
   "image/jpeg",

@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { ReactNode } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './components/avatar.tsx';
 import { Badge } from './components/badge.tsx';

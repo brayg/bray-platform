@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import type { ComponentType, ReactNode } from "react";
 import { cn } from "@heybray/ui/utils";
 

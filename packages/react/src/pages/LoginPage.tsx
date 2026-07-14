@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { useState, useEffect } from "react";
 import { Redirect, Link, useLocation } from "wouter";
 import { useAuth } from "../hooks/use-auth.ts";

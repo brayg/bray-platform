@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 export * from "./classifications.ts";
 export * from "./display.ts";
 export * from "./content-links.ts";

@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { Router } from "express";
 import { z } from "zod";
 import { requireRole, type AuthRequest } from "../middleware/auth.ts";

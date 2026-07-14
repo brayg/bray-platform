@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 const PROVIDER_ICON_FILES = new Set(["google", "okta", "microsoft"]);
 
 export function getOidcProviderIcon(providerName: string): string | null {

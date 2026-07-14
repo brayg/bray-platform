@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { db } from "@heybray/server-kit";
 import { teams, type CreateTeam, type UpdateTeam } from "../schema/teams.ts";
 import { users } from "../schema/users.ts";

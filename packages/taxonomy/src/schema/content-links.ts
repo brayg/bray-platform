@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { pgTable, text, integer, primaryKey } from "drizzle-orm/pg-core";
 import { classificationOptions } from "./classifications.ts";
 

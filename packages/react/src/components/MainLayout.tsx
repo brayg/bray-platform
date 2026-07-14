@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { useState, type ReactNode } from "react";
 import { Button } from "@heybray/ui/components/button";
 import { Avatar, AvatarFallback } from "@heybray/ui/components/avatar";

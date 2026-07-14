@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 export * from "./logger.ts";
 export * from "./app-version.ts";
 export * from "./secret-encryption.ts";

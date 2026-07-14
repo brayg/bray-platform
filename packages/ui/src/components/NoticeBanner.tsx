@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (C) 2026 Heybray
+ */
+
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../utils.ts";
 import type { ButtonHTMLAttributes, HTMLAttributes } from "react";
