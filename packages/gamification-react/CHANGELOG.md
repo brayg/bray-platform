@@ -1,5 +1,25 @@
 # @heybray/gamification-react
 
+## 1.0.0
+
+### Major Changes
+
+- 9784e46: **1.0.0 — API stability policy lock**
+
+  From 1.0.0 onward: a breaking DB schema change is a **major** release with expand/contract documentation; a breaking runtime API change is a **major** release with migration notes in the changelog.
+
+  Deprecated aliases supported until **2.0.0**: legacy star-map path helpers (`legacyMemberScenarioHistoryPath`, `legacyMemberRoleplayAttemptsPath`), `drawerPink.scenarioRow` / `scenarioRowHover`, `ScenarioListRowComponent` / `ScenarioListRowProps`, `detachedFromScenarios` (use `detachedCount`), and related response-key fallbacks.
+
+  `@heybray/llm` remains the least-validated package (single consumer: Scenarios).
+
+### Patch Changes
+
+- Updated dependencies [3a656e8]
+- Updated dependencies [9784e46]
+  - @heybray/react@1.0.0
+  - @heybray/gamification@1.0.0
+  - @heybray/ui@1.0.0
+
 ## 0.3.1
 
 ### Patch Changes
