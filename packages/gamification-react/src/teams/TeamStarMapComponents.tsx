@@ -54,7 +54,7 @@ export type ContentListRowProps = {
 };
 
 // DEPRECATED: ScenarioListRowProps alias
-export type ScenarioListRowProps = ContentListRowProps;
+export type ScenarioListRowProps = ContentListRowProps; // DEPRECATED:
 
 type MemberProgressDrawerProps = {
   teamId: number | "all";
@@ -64,7 +64,7 @@ type MemberProgressDrawerProps = {
   /** App-supplied row renderer (joins attempt transcript data). */
   ContentListRowComponent: ComponentType<ContentListRowProps>;
   // DEPRECATED: ScenarioListRowComponent alias
-  ScenarioListRowComponent?: ComponentType<ContentListRowProps>;
+  ScenarioListRowComponent?: ComponentType<ContentListRowProps>; // DEPRECATED:
   /** Build the member history endpoint. Defaults to `/content-history`. */
   memberHistoryPath?: (teamId: number | "all", userId: number) => string;
   /** Singular content noun for headings (e.g. `deck`, `note`). */
@@ -178,12 +178,12 @@ export function MemberProgressDrawer({
   initialExpandedCategory = null,
   onClose,
   ContentListRowComponent,
-  ScenarioListRowComponent,
+  ScenarioListRowComponent, // DEPRECATED: use ContentListRowComponent
   memberHistoryPath = memberContentHistoryPath,
   contentNoun = "content",
   contentNounPlural,
 }: MemberProgressDrawerProps) {
-  const RowComponent = ContentListRowComponent ?? ScenarioListRowComponent;
+  const RowComponent = ContentListRowComponent ?? ScenarioListRowComponent; // DEPRECATED: ScenarioListRowComponent fallback
   const pluralNoun = contentNounPlural ?? `${contentNoun}s`;
   const historyPath =
     userId != null ? memberHistoryPath(teamId, userId) : null;

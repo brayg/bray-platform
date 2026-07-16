@@ -37,3 +37,46 @@ service).
   change that should trigger a version bump on publish.
 - Make sure `npm run build`, `npm run typecheck`, and `npm run lint` all pass before requesting
   review.
+- Run `./bin/check-scenarios-vocabulary.sh` — the case-insensitive Scenarios vocabulary gate
+  must pass (also enforced in CI).
+
+## Scenarios vocabulary gate
+
+Platform packages must not introduce new Scenarios-era **wire** vocabulary (`scenario`,
+`roleplay`, and camelCase variants such as `detachedFromScenarios`). The gate is
+case-insensitive:
+
+```bash
+./bin/check-scenarios-vocabulary.sh
+```
+
+Implementation: `grep -rni 'scenario\|roleplay' packages/*/src` with an allowlist. A match is
+**allowed** only when:
+
+1. **Deprecated alias** — the line contains `DEPRECATED` (deprecated response fields, path
+   helpers, style keys, and type aliases kept until 2.0.0).
+2. **`legacy*` identifiers** — in `star-map-paths.ts` or `TeamStarMapComponents.tsx` only
+   (e.g. `legacyMemberScenarioHistoryPath`).
+3. **Doc-comments** — JSDoc/block-comment lines (`*`, `/**`) mentioning Scenarios as product
+   context, not as API surface.
+
+Any other match fails the gate. Neutral replacements (`content-history`, `detachedCount`,
+`ContentListRowComponent`, etc.) are required for new code.
+
+## Publishing to npm
+
+CI publishes via `.github/workflows/release.yml` when a "Version Packages" PR merges to `main`.
+The workflow needs a repo secret **`NPM_TOKEN`**: an npm **Automation** token (not Publish) for the
+`brayg` account with write access to the `@heybray` scope. If the token is missing or invalid,
+`npm publish` fails with a misleading **`E404 Not Found`** on scoped packages — that is an auth
+failure, not a missing package.
+
+To publish manually (same as CI):
+
+```bash
+npm ci
+npx turbo run build
+npx changeset publish
+```
+
+Requires `npm whoami` to return `brayg` (or another maintainer on the `@heybray` packages).

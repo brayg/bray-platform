@@ -27,6 +27,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Scenarios vocabulary gate
+        run: ./bin/check-scenarios-vocabulary.sh
+
       - run: npx turbo run typecheck build
 
   examples-integration:
