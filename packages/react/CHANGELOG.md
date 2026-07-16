@@ -1,5 +1,25 @@
 # @heybray/react
 
+## 1.0.0
+
+### Major Changes
+
+- 9784e46: **1.0.0 — API stability policy lock**
+
+  From 1.0.0 onward: a breaking DB schema change is a **major** release with expand/contract documentation; a breaking runtime API change is a **major** release with migration notes in the changelog.
+
+  Deprecated aliases supported until **2.0.0**: legacy star-map path helpers (`legacyMemberScenarioHistoryPath`, `legacyMemberRoleplayAttemptsPath`), `drawerPink.scenarioRow` / `scenarioRowHover`, `ScenarioListRowComponent` / `ScenarioListRowProps`, `detachedFromScenarios` (use `detachedCount`), and related response-key fallbacks.
+
+  `@heybray/llm` remains the least-validated package (single consumer: Scenarios).
+
+### Patch Changes
+
+- 3a656e8: Add neutral `detachedCount` to media delete response; keep `detachedFromScenarios` as a deprecated alias until 2.0.0. `@heybray/react` `MediaManagementPanel` reads `detachedCount` first.
+- Updated dependencies [9784e46]
+  - @heybray/identity@1.0.0
+  - @heybray/taxonomy@1.0.0
+  - @heybray/ui@1.0.0
+
 ## 0.1.2
 
 ### Patch Changes
