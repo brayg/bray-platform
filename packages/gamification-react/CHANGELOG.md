@@ -1,5 +1,16 @@
 # @heybray/gamification-react
 
+## 0.3.0
+
+### Minor Changes
+
+- 6e2c57d: Flip star-map defaults to neutral API paths, add `memberAttemptsPath` on row props, rename `drawerPink` row style keys to neutral names with deprecated aliases, and remove hardcoded content-type defaults from points panels.
+
+### Patch Changes
+
+- Updated dependencies [6e2c57d]
+  - @heybray/gamification@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
