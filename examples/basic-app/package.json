@@ -1,6 +1,6 @@
 {
   "name": "basic-app",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "license": "AGPL-3.0-only",
@@ -14,8 +14,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@heybray/gamification": "^0.2.0",
-    "@heybray/gamification-react": "^0.2.0",
+    "@heybray/gamification": "^0.3.0",
+    "@heybray/gamification-react": "^0.3.0",
     "@heybray/identity": "^0.1.1",
     "@heybray/react": "^0.1.2",
     "@heybray/server-kit": "^0.1.2",

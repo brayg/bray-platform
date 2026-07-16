@@ -61,12 +61,15 @@ export type ClassificationOptionRef = {
   icon: string;
 };
 
-export type RoleplayClassifications = {
+export type ContentBindingClassifications = {
   category: ClassificationOptionRef | null;
   audienceLevel: ClassificationOptionRef | null;
   duration: ClassificationOptionRef | null;
   tags: ClassificationOptionRef[];
 };
+
+// DEPRECATED: RoleplayClassifications alias
+export type RoleplayClassifications = ContentBindingClassifications; // DEPRECATED:
 
 export type ClassificationDimensionWithOptions = {
   id: number;
@@ -77,12 +80,15 @@ export type ClassificationDimensionWithOptions = {
   options: ClassificationOptionSummary[];
 };
 
-export type RoleplayClassificationInput = {
+export type ContentBindingClassificationInput = {
   category?: string | null;
   audienceLevel?: string | null;
   duration?: string | null;
   tags?: string[];
 };
+
+// DEPRECATED: RoleplayClassificationInput alias
+export type RoleplayClassificationInput = ContentBindingClassificationInput; // DEPRECATED:
 
 export function slugifyLabel(label: string): string {
   return label

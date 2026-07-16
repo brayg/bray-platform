@@ -16,9 +16,9 @@ import { useToast } from "@heybray/ui/hooks/use-toast";
 import { ImagePlus, Loader2, Trash2 } from "lucide-react";
 
 interface MediaManagementPanelProps {
-  /** Singular content noun for user-facing copy (e.g. "scenario"). */
+  /** Singular content noun for user-facing copy (e.g. "deck"). */
   contentNoun: string;
-  /** Query key to invalidate when media is detached from content (e.g. "/api/roleplays"). */
+  /** Query key to invalidate when media is detached from content (e.g. "/api/decks"). */
   contentInvalidateKey: string;
   /** Render an app-specific cover preview for a media asset (e.g. ScenarioCover). */
   renderCover: (mediaId: number) => ReactNode;

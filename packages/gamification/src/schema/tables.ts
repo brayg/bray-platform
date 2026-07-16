@@ -25,7 +25,7 @@ export type { ContentClassificationLink } from "@heybray/taxonomy/schema";
 /**
  * Content-polymorphic gamification tables (Phase 2). `content_id` deliberately
  * carries NO `.references()` — the binding FK into the app's content table is the
- * app's own migration (0009_scenario_binding.sql), because platform packages must
+ * app's own content-binding migration, because platform packages must
  * not know any single app's content table.
  */
 
@@ -42,8 +42,6 @@ export const rewardTiers = pgTable(
     starLevel: integer("star_level").notNull(),
     color: text("color"),
     icon: text("icon"),
-    // Maps to scenario_reward_tiers.id; dropped when the old tables drop.
-    legacyId: integer("legacy_id"),
   },
   (table) => [
     uniqueIndex("reward_tiers_content_star").on(
@@ -115,9 +113,8 @@ export const gamificationContent = pgTable(
 /**
  * The package's content-polymorphic view of the shared `point_transactions`
  * table. It maps the columns added in migration 0008 (content_type/content_id/
- * activity_id) and omits the legacy roleplay_id/attempt_id columns (still on the
- * physical table until a follow-up drop). Not registered in `gamificationSchema`
- * — the app's db composition keeps the legacy view under `pointTransactions`.
+ * activity_id). Apps that upgraded from pre-generalization DBs drop any remaining
+ * legacy columns via their own migrations.
  */
 export const pointTransactions = pgTable("point_transactions", {
   id: serial("id").primaryKey(),

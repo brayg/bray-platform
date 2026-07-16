@@ -148,7 +148,7 @@ const PROVIDER_LABELS: Record<string, string> = {
 
 /**
  * Turn a raw LLM/provider SDK error into a short, human-readable explanation
- * suitable for showing to an admin configuring the roleplay LLM.
+ * suitable for showing to an admin configuring the app LLM.
  */
 export function describeModelError(
   error: unknown,

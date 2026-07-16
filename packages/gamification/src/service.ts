@@ -702,7 +702,7 @@ export class GamificationService {
     };
   }
 
-  // ---- content progress (generic half of getScenarioProgress) ---------------
+  // ---- content progress ----------------------------------------------------
 
   async getUserTierAward(userId: number, contentType: string, contentId: number) {
     const [row] = await db

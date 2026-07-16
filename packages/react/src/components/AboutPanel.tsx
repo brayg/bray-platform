@@ -77,7 +77,7 @@ export function AboutPanel({ logoSrc }: AboutPanelProps) {
       <div className="space-y-1 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} HeyBray Labs</p>
         <p>Open source — license pending</p>
-        <p>Standalone deployment of the roleplay feature from the Bray platform</p>
+        <p>Standalone deployment of a Bray training app</p>
       </div>
     </div>
   );

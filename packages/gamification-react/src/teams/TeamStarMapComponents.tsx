@@ -19,7 +19,7 @@ import {
 } from "../points/CategoryMasteryBar.tsx";
 import { drawerPink } from "./drawer-pink-styles.ts";
 import type { ContentHistoryItem } from "./star-map-types.ts";
-import { legacyMemberScenarioHistoryPath } from "./star-map-paths.ts";
+import { memberContentHistoryPath } from "./star-map-paths.ts";
 import { cn } from "@heybray/ui/utils";
 import { ChevronDown, Loader2, X } from "lucide-react";
 
@@ -45,9 +45,15 @@ export type ContentListRowProps = {
   item: ContentHistoryItem;
   teamId: number | "all";
   memberUserId: number;
+  /** Build the member attempts endpoint. Defaults to neutral `/contents/:id/attempts`. */
+  memberAttemptsPath?: (
+    teamId: number | "all",
+    userId: number,
+    contentId: number,
+  ) => string;
 };
 
-/** @deprecated Use `ContentListRowProps` */
+// DEPRECATED: ScenarioListRowProps alias
 export type ScenarioListRowProps = ContentListRowProps;
 
 type MemberProgressDrawerProps = {
@@ -57,13 +63,13 @@ type MemberProgressDrawerProps = {
   onClose: () => void;
   /** App-supplied row renderer (joins attempt transcript data). */
   ContentListRowComponent: ComponentType<ContentListRowProps>;
-  /** @deprecated Use `ContentListRowComponent` */
+  // DEPRECATED: ScenarioListRowComponent alias
   ScenarioListRowComponent?: ComponentType<ContentListRowProps>;
-  /** Build the member history endpoint. Defaults to legacy `/scenario-history`. */
+  /** Build the member history endpoint. Defaults to `/content-history`. */
   memberHistoryPath?: (teamId: number | "all", userId: number) => string;
-  /** Singular content noun for headings (e.g. `deck`, `scenario`). */
+  /** Singular content noun for headings (e.g. `deck`, `note`). */
   contentNoun?: string;
-  /** Plural content noun for empty states (e.g. `decks`, `scenarios`). */
+  /** Plural content noun for empty states (e.g. `decks`, `notes`). */
   contentNounPlural?: string;
 };
 
@@ -81,7 +87,8 @@ function normalizeMemberHistory(raw: unknown): MemberContentHistory {
       total: number;
       starCounts: { gold: number; silver: number; bronze: number };
       contents?: ContentHistoryItem[];
-      scenarios?: ContentHistoryItem[];
+      // DEPRECATED: scenarios response-key alias
+      scenarios?: ContentHistoryItem[]; // DEPRECATED:
     }>;
   };
 
@@ -89,7 +96,7 @@ function normalizeMemberHistory(raw: unknown): MemberContentHistory {
     ...data,
     categories: data.categories.map((category) => ({
       ...category,
-      contents: category.contents ?? category.scenarios ?? [],
+      contents: category.contents ?? category.scenarios ?? [], // DEPRECATED: scenarios fallback
     })),
   };
 }
@@ -172,8 +179,8 @@ export function MemberProgressDrawer({
   onClose,
   ContentListRowComponent,
   ScenarioListRowComponent,
-  memberHistoryPath = legacyMemberScenarioHistoryPath,
-  contentNoun = "scenario",
+  memberHistoryPath = memberContentHistoryPath,
+  contentNoun = "content",
   contentNounPlural,
 }: MemberProgressDrawerProps) {
   const RowComponent = ContentListRowComponent ?? ScenarioListRowComponent;

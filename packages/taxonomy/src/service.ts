@@ -30,7 +30,7 @@ type DbTx = Parameters<Parameters<typeof db.transaction>[0]>[0];
  * A content item's classifications keyed by dimension slug. Single-cardinality
  * dimensions map to one option ref; multi-cardinality dimensions map to an array.
  * The consuming app reshapes this into its own domain payload (see the app-side
- * adapter, e.g. server/lib/scenario-classifications.ts).
+ * adapter, e.g. server/lib/content-classifications.ts).
  */
 export type ContentClassifications = Record<
   string,
@@ -582,7 +582,7 @@ export class ClassificationService {
       .from(contentClassificationLinks)
       .where(eq(contentClassificationLinks.optionId, optionId));
     if (Number(usage?.count ?? 0) > 0) {
-      throw new Error("Cannot delete an option that is in use by scenarios");
+      throw new Error("Cannot delete an option that is in use by content items");
     }
 
     await db.delete(classificationOptions).where(eq(classificationOptions.id, optionId));

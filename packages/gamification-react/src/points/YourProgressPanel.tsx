@@ -64,8 +64,8 @@ function CategoryMasteryRowView({
       )}
       title={
         row.slug === ALL_CATEGORIES_SLUG
-          ? "Browse all scenarios"
-          : `Filter scenarios by ${row.label}`
+          ? "Browse all content"
+          : `Filter by ${row.label}`
       }
     >
       {row.label}

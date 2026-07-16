@@ -6,4 +6,5 @@
 export * from "./schema/index.ts";
 export * from "./service.ts";
 export * from "./team-star-map.service.ts";
+export * from "./star-map-paths.ts";
 export { createGamificationRouter, resolveLeaderboardScope } from "./routes.ts";

@@ -10,7 +10,7 @@ import { classificationOptions } from "./classifications.ts";
  * Content-polymorphic join between classification options and any consuming
  * content. Taxonomy owns this table outright (Phase 2). `content_id` carries no
  * `.references()` — the binding FK into the app's content table is the app's own
- * migration (0009_scenario_binding.sql), because the taxonomy package must not
+ * migration (app content-binding step), because the taxonomy package must not
  * know any single app's content table.
  */
 export const contentClassificationLinks = pgTable(

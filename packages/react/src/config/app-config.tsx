@@ -13,7 +13,7 @@ export interface AppConfigUrls {
 }
 
 export interface AppConfigRoutes {
-  /** Build a client route for a gamified content item (e.g. `/roleplays/${id}`). */
+  /** Build a client route for a gamified content item (e.g. `/decks/${id}`). */
   contentPath: (contentType: string, contentId: number) => string;
 }
 
@@ -27,7 +27,7 @@ export interface AppConfig {
   tagline?: string;
   urls: AppConfigUrls;
   routes: AppConfigRoutes;
-  /** Primary gamified content type slug (e.g. `scenario`, `deck`). Used by gamification-react panels for deep links. */
+  /** Primary gamified content type slug (e.g. `deck`, `note`). Used by gamification-react panels for deep links. */
   gamificationContentType?: string;
 }
 

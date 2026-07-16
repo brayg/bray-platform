@@ -56,9 +56,9 @@ type ClassificationsResponse = {
 };
 
 interface ClassificationManagementPanelProps {
-  /** Singular content noun for user-facing copy (e.g. "scenario"). */
+  /** Singular content noun for user-facing copy (e.g. "deck"). */
   contentNoun: string;
-  /** Taxonomy admin API base path (e.g. "/api/roleplay-classifications"). */
+  /** Taxonomy admin API base path (e.g. "/api/classifications"). */
   taxonomyEndpoint: string;
 }
 

@@ -45,7 +45,7 @@ function formatDateTime(value: string) {
 }
 
 export function PointsHistoryDialog({ open, onOpenChange }: PointsHistoryDialogProps) {
-  const { routes, gamificationContentType = "scenario", displayName } = useAppConfig();
+  const { routes, gamificationContentType, displayName } = useAppConfig();
   const [page, setPage] = useState(1);
   const pageSize = 10;
 
@@ -116,7 +116,7 @@ export function PointsHistoryDialog({ open, onOpenChange }: PointsHistoryDialogP
                         <span className="line-clamp-2">{item.contentTitle ?? "Activity"}</span>
                         {item.contentId != null && (
                           <Link
-                            href={routes.contentPath(gamificationContentType, item.contentId)}
+                            href={routes.contentPath(gamificationContentType ?? "", item.contentId)}
                             className="shrink-0 text-muted-foreground hover:text-primary"
                             title="Open activity"
                             onClick={() => onOpenChange(false)}
