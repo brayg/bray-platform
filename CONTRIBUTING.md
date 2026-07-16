@@ -37,3 +37,21 @@ service).
   change that should trigger a version bump on publish.
 - Make sure `npm run build`, `npm run typecheck`, and `npm run lint` all pass before requesting
   review.
+
+## Publishing to npm
+
+CI publishes via `.github/workflows/release.yml` when a "Version Packages" PR merges to `main`.
+The workflow needs a repo secret **`NPM_TOKEN`**: an npm **Automation** token (not Publish) for the
+`brayg` account with write access to the `@heybray` scope. If the token is missing or invalid,
+`npm publish` fails with a misleading **`E404 Not Found`** on scoped packages — that is an auth
+failure, not a missing package.
+
+To publish manually (same as CI):
+
+```bash
+npm ci
+npx turbo run build
+npx changeset publish
+```
+
+Requires `npm whoami` to return `brayg` (or another maintainer on the `@heybray` packages).
