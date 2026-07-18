@@ -15,6 +15,8 @@ export interface AppConfigUrls {
 export interface AppConfigRoutes {
   /** Build a client route for a gamified content item (e.g. `/decks/${id}`). */
   contentPath: (contentType: string, contentId: number) => string;
+  /** Client route for the team star map page (default `/team-star-map`). */
+  teamStarMapPath?: string;
 }
 
 /**

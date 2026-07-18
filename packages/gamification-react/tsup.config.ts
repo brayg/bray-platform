@@ -5,6 +5,7 @@ function entriesFor(dir: string, ext: string) {
   const entries: Record<string, string> = {};
   for (const file of globSync(`src/${dir}/*.${ext}`)) {
     const name = file.split("/").pop()!.replace(new RegExp(`\\.${ext}$`), "");
+    if (name.endsWith(".test")) continue;
     entries[`${dir}/${name}`] = file;
   }
   return entries;

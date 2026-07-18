@@ -32,6 +32,8 @@ jobs:
 
       - run: npx turbo run typecheck build
 
+      - run: npm run test --workspace=@heybray/gamification-react
+
   examples-integration:
     name: examples/basic-app integration
     runs-on: ubuntu-latest

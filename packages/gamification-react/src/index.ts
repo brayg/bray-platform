@@ -7,6 +7,7 @@ export * from "./points/CategoryMasteryBar.tsx";
 export * from "./points/CategoryMasteryRow.tsx";
 export * from "./points/HomeSidebarPanel.tsx";
 export * from "./points/LeaderboardPanel.tsx";
+export * from "./points/GamificationNavActions.tsx";
 export * from "./points/PointsHistoryDialog.tsx";
 export * from "./points/RecentStarsPanel.tsx";
 export * from "./points/RewardTierLabel.tsx";
