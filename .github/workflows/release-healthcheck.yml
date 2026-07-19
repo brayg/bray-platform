@@ -19,9 +19,6 @@ on:
         required: false
         default: "30"
         type: string
-  # TEMPORARY: remove before merging PR #31 — enables CI verification on the PR branch only.
-  push:
-    branches: [ci/release-pipeline-hardening]
   workflow_run:
     workflows: [Release]
     types: [completed]
@@ -85,8 +82,8 @@ jobs:
     if: github.event_name != 'workflow_run'
     runs-on: ubuntu-latest
     env:
-      CHECK_REF: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.check_ref || github.ref_name }}
-      GRACE_MINUTES: ${{ github.ref_name == 'ci/release-pipeline-hardening' && '0' || (github.event_name == 'workflow_dispatch' && github.event.inputs.grace_minutes || '30') }}
+      CHECK_REF: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.check_ref || 'main' }}
+      GRACE_MINUTES: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.grace_minutes || '30' }}
     steps:
       - uses: actions/checkout@v4
         with:
