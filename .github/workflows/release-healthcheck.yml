@@ -8,6 +8,17 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
+    inputs:
+      check_ref:
+        description: "Git ref to inspect (default main). Use a test branch with a pending changeset to exercise stuck detection."
+        required: false
+        default: main
+        type: string
+      grace_minutes:
+        description: "Minutes after last .changeset/ commit before alerting (default 30). Use 0 to test immediately."
+        required: false
+        default: "30"
+        type: string
   workflow_run:
     workflows: [Release]
     types: [completed]
@@ -15,6 +26,8 @@ on:
 permissions:
   contents: read
   issues: write
+  pull-requests: read
+  actions: read
 
 concurrency:
   group: release-healthcheck
@@ -48,7 +61,7 @@ jobs:
               state: "open",
               per_page: 50,
             });
-            const match = existing.find((i) => i.title === title);
+            const match = existing.find((i) => i.title === title && !i.pull_request);
             if (match) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -68,13 +81,16 @@ jobs:
   check-stuck-version-packages:
     if: github.event_name != 'workflow_run'
     runs-on: ubuntu-latest
+    env:
+      CHECK_REF: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.check_ref || 'main' }}
+      GRACE_MINUTES: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.grace_minutes || '30' }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ env.CHECK_REF }}
           fetch-depth: 0
 
-      - name: Count pending changesets on main
+      - name: Count pending changesets
         id: pending
         run: |
           pending=0
@@ -85,11 +101,11 @@ jobs:
             pending=$((pending + 1))
           done
           echo "count=$pending" >> "$GITHUB_OUTPUT"
-          echo "Pending changeset files on main: $pending"
+          echo "Pending changeset files on ${CHECK_REF}: $pending"
 
-      - name: Skip when main has no pending changesets
+      - name: Skip when ref has no pending changesets
         if: steps.pending.outputs.count == '0'
-        run: echo "No pending changesets on main — nothing to check."
+        run: echo "No pending changesets on ${CHECK_REF} — nothing to check."
 
       - name: Inspect Version Packages PR and Release runs
         id: inspect
@@ -117,9 +133,9 @@ jobs:
           NOW_EPOCH=$(date -u +%s)
           AGE_MIN=$(( (NOW_EPOCH - CHANGESET_EPOCH) / 60 ))
           echo "changeset_age_min=$AGE_MIN" >> "$GITHUB_OUTPUT"
-          if [ "$AGE_MIN" -lt 30 ]; then
+          if [ "$AGE_MIN" -lt "$GRACE_MINUTES" ]; then
             echo "within_grace=true" >> "$GITHUB_OUTPUT"
-            echo "Within ${AGE_MIN}m grace window (< 30m since last .changeset/ commit) — skip stuck alert."
+            echo "Within ${AGE_MIN}m grace window (< ${GRACE_MINUTES}m since last .changeset/ commit) — skip stuck alert."
             exit 0
           fi
           echo "within_grace=false" >> "$GITHUB_OUTPUT"
@@ -176,7 +192,7 @@ jobs:
               state: "open",
               per_page: 50,
             });
-            const match = existing.find((i) => i.title === title);
+            const match = existing.find((i) => i.title === title && !i.pull_request);
             if (match) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -208,7 +224,7 @@ jobs:
               per_page: 50,
             });
             for (const issue of issues) {
-              if (issue.title !== title) continue;
+              if (issue.title !== title || issue.pull_request) continue;
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
