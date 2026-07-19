@@ -1,3 +1,12 @@
 {
-   "signedContributors": []
+  "signedContributors": [
+    {
+      "name": "brayg",
+      "id": 298736069,
+      "comment_id": 5015471536,
+      "created_at": "2026-07-19T11:05:09Z",
+      "repoId": 1299762709,
+      "pullRequestNo": 20
+    }
+  ]
 }
