@@ -23,6 +23,13 @@ export interface SettingsPanel {
   label: string;
   /** Hidden unless the user has the manage permission. */
   requiresManage?: boolean;
+  /**
+   * When `requiresManage` is set, gate on this permission specifically. Omit only
+   * for single-domain apps where any configured layout manage permission suffices.
+   */
+  managePermission?: string;
+  /** Hidden unless the user's role name matches (e.g. identity admin-only panels). */
+  requiresRole?: string;
   /** Hidden when this feature key is disabled (EntitlementProvider gate). */
   requiredFeature?: string;
   /**
@@ -51,6 +58,30 @@ function resolveManagePermissions(props: {
   return [];
 }
 
+function isPanelVisible(
+  panel: SettingsPanel,
+  ctx: {
+    hasPermission: (permission: string) => boolean;
+    hasRole: (roleName: string) => boolean;
+    layoutManagePermissions: string[];
+    featureFlags: Record<string, boolean | undefined>;
+  },
+): boolean {
+  if (panel.requiredFeature && ctx.featureFlags[panel.requiredFeature] === false) {
+    return false;
+  }
+  if (panel.requiresRole && !ctx.hasRole(panel.requiresRole)) {
+    return false;
+  }
+  if (panel.requiresManage) {
+    if (panel.managePermission) {
+      return ctx.hasPermission(panel.managePermission);
+    }
+    return ctx.layoutManagePermissions.some((permission) => ctx.hasPermission(permission));
+  }
+  return true;
+}
+
 export function SettingsModal({
   open,
   onOpenChange,
@@ -58,18 +89,19 @@ export function SettingsModal({
   managePermission,
   managePermissions,
 }: SettingsModalProps) {
-  const { hasPermission } = useAuth();
-  const canManage = resolveManagePermissions({ managePermission, managePermissions }).some(
-    (permission) => hasPermission(permission),
-  );
+  const { hasPermission, hasRole } = useAuth();
+  const layoutManagePermissions = resolveManagePermissions({ managePermission, managePermissions });
   const [dirty, setDirty] = useState(false);
   const [discardOpen, setDiscardOpen] = useState(false);
 
   const featureFlags = useFeatureFlags(panels.map((p) => p.requiredFeature));
-  const visiblePanels = panels.filter(
-    (p) =>
-      (!p.requiresManage || canManage) &&
-      (!p.requiredFeature || featureFlags[p.requiredFeature] !== false),
+  const visiblePanels = panels.filter((panel) =>
+    isPanelVisible(panel, {
+      hasPermission,
+      hasRole,
+      layoutManagePermissions,
+      featureFlags,
+    }),
   );
 
   const requestClose = (next: boolean) => {
